@@ -15,6 +15,8 @@ namespace ExchangeRates
 
         public static void SaveJsonTemplate(IDictionary<DateTime?, JsonTemplate> input)
         {
+            var imports = new List<ExchangeRate>();
+            
             using (var db = new dbEntities())
             {
                 foreach (var t in input)
@@ -30,7 +32,7 @@ namespace ExchangeRates
                             CurrencyDate = (DateTime) t.Key
                         };
 
-                        db.ExchangeRates.Add(rub);
+                        imports.Add(rub);
 
                         var eur = new ExchangeRate
                         {
@@ -41,7 +43,7 @@ namespace ExchangeRates
                             CurrencyDate = (DateTime) t.Key
                         };
 
-                        db.ExchangeRates.Add(eur);
+                        imports.Add(eur);
 
                         var usd = new ExchangeRate
                         {
@@ -52,7 +54,7 @@ namespace ExchangeRates
                             CurrencyDate = (DateTime) t.Key
                         };
 
-                        db.ExchangeRates.Add(usd);
+                        imports.Add(usd);
 
                         var gbp = new ExchangeRate
                         {
@@ -63,7 +65,7 @@ namespace ExchangeRates
                             CurrencyDate = (DateTime) t.Key
                         };
 
-                        db.ExchangeRates.Add(gbp);
+                        imports.Add(gbp);
 
                         var jpy = new ExchangeRate
                         {
@@ -73,10 +75,10 @@ namespace ExchangeRates
                             Rate = t.Value.Rates.Jpy,
                             CurrencyDate = (DateTime) t.Key
                         };
-                        db.ExchangeRates.Add(jpy);
+                        imports.Add(jpy);
                     }
                 }
-                db.SaveChanges();
+                Helper.BulkInsert(db.Database.Connection.ConnectionString, "ExchangeRate", imports); 
             }
         }
 

@@ -65,6 +65,7 @@
     <Compile Include="GetRates_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="JsonTemplate.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Model.Context.cs">
