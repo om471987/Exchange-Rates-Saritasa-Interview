@@ -1,0 +1,71 @@
+﻿@model ExchangeRates.Web.Models.CurrencyModel
+
+<!DOCTYPE html>
+
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+<script type="text/javascript">
+   $(document).ready(function () {
+      var myDate = new Date();
+      var prettyDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
+      $('#StartDate').datepicker().val(prettyDate);
+      $('#EndDate').datepicker().val(prettyDate);
+   });
+</script>
+
+<html>
+   <head>
+      <title>title</title>
+   </head>
+   <body>
+      <div>
+         @using (Html.BeginForm("Index", "Currency", FormMethod.Post))
+         {
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+               <legend>File</legend>
+
+               <div class="editor-label">
+                  @Html.LabelFor(model => model.StartDate)
+               </div>
+               <div class="editor-field">
+                  @Html.TextBox("StartDate", null, new {id="StartDate"})
+               </div>
+               <br />
+               <br />
+               <br />
+               <br />
+               <br />
+               <div class="editor-label">
+                  @Html.LabelFor(model => model.EndDate)
+               </div>
+               <div class="editor-field">
+                  @Html.TextBox("EndDate", null, new {id="EndDate"})
+               </div>
+
+               <div class="editor-label">
+                  @Html.LabelFor(model => model.Currencies)
+               </div>
+               <div class="editor-field">
+                  @Html.DropDownList("list1",Model.Currencies)
+               </div>
+
+               <div class="editor-label">
+                  @Html.LabelFor(model => model.Currencies)
+               </div>
+               <div class="editor-field">
+                  @Html.DropDownList("list2",Model.Currencies)
+               </div>
+               <div id="validation" style="color: red;font-size: 1.2em;">@ViewBag.Error</div>
+               <p>
+                  <input type="submit" value="Create" />
+               </p>
+            </fieldset>
+         }         
+
+      </div>
+   </body>
+</html>

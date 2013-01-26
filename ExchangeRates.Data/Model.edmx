@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="dbModelStoreContainer">
+          <EntitySet Name="Country" EntityType="dbModel.Store.Country" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Currency" EntityType="dbModel.Store.Currency" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ExchangeRate" EntityType="dbModel.Store.ExchangeRate" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Currency__Countr__0DAF0CB0" Association="dbModel.Store.FK__Currency__Countr__0DAF0CB0">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Currency" EntitySet="Currency" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ExchangeR__BaseC__1367E606" Association="dbModel.Store.FK__ExchangeR__BaseC__1367E606">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="ExchangeRate" EntitySet="ExchangeRate" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ExchangeR__Curre__1273C1CD" Association="dbModel.Store.FK__ExchangeR__Curre__1273C1CD">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="ExchangeRate" EntitySet="ExchangeRate" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="55" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="ShortForm" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="Country_Id" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="ExchangeRate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Currency_Id" Type="int" Nullable="false" />
+          <Property Name="BaseCurrency_Id" Type="int" Nullable="false" />
+          <Property Name="CurrencyDate" Type="date" Nullable="false" />
+          <Property Name="Rate" Type="float" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Currency__Countr__0DAF0CB0">
+          <End Role="Country" Type="dbModel.Store.Country" Multiplicity="1" />
+          <End Role="Currency" Type="dbModel.Store.Currency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Currency">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ExchangeR__BaseC__1367E606">
+          <End Role="Currency" Type="dbModel.Store.Currency" Multiplicity="1" />
+          <End Role="ExchangeRate" Type="dbModel.Store.ExchangeRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExchangeRate">
+              <PropertyRef Name="BaseCurrency_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ExchangeR__Curre__1273C1CD">
+          <End Role="Currency" Type="dbModel.Store.Currency" Multiplicity="1" />
+          <End Role="ExchangeRate" Type="dbModel.Store.ExchangeRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExchangeRate">
+              <PropertyRef Name="Currency_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetNonExistingDates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstDate" Type="date" Mode="In" />
+          <Parameter Name="Range" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetRates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartDate" Type="date" Mode="In" />
+          <Parameter Name="EndDate" Type="date" Mode="In" />
+          <Parameter Name="From" Type="int" Mode="In" />
+          <Parameter Name="To" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Countries" EntityType="dbModel.Country" />
+          <EntitySet Name="Currencies" EntityType="dbModel.Currency" />
+          <EntitySet Name="ExchangeRates" EntityType="dbModel.ExchangeRate" />
+          <AssociationSet Name="FK__Currency__Countr__0DAF0CB0" Association="dbModel.FK__Currency__Countr__0DAF0CB0">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Currency" EntitySet="Currencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ExchangeR__BaseC__1367E606" Association="dbModel.FK__ExchangeR__BaseC__1367E606">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="ExchangeRate" EntitySet="ExchangeRates" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ExchangeR__Curre__1273C1CD" Association="dbModel.FK__ExchangeR__Curre__1273C1CD">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="ExchangeRate" EntitySet="ExchangeRates" />
+          </AssociationSet>
+          <FunctionImport Name="GetNonExistingDates" ReturnType="Collection(DateTime)">
+            <Parameter Name="FirstDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Range" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetRates" ReturnType="Collection(dbModel.GetRates_Result)">
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="From" Mode="In" Type="Int32" />
+            <Parameter Name="To" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="55" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Currencies" Relationship="dbModel.FK__Currency__Countr__0DAF0CB0" FromRole="Country" ToRole="Currency" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="ShortForm" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="Country_Id" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1024" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Country" Relationship="dbModel.FK__Currency__Countr__0DAF0CB0" FromRole="Currency" ToRole="Country" />
+          <NavigationProperty Name="ExchangeRates" Relationship="dbModel.FK__ExchangeR__BaseC__1367E606" FromRole="Currency" ToRole="ExchangeRate" />
+          <NavigationProperty Name="ExchangeRates1" Relationship="dbModel.FK__ExchangeR__Curre__1273C1CD" FromRole="Currency" ToRole="ExchangeRate" />
+        </EntityType>
+        <EntityType Name="ExchangeRate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Currency_Id" Type="Int32" Nullable="false" />
+          <Property Name="BaseCurrency_Id" Type="Int32" Nullable="false" />
+          <Property Name="CurrencyDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Rate" Type="Double" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Currency" Relationship="dbModel.FK__ExchangeR__BaseC__1367E606" FromRole="ExchangeRate" ToRole="Currency" />
+          <NavigationProperty Name="Currency1" Relationship="dbModel.FK__ExchangeR__Curre__1273C1CD" FromRole="ExchangeRate" ToRole="Currency" />
+        </EntityType>
+        <Association Name="FK__Currency__Countr__0DAF0CB0">
+          <End Role="Country" Type="dbModel.Country" Multiplicity="1" />
+          <End Role="Currency" Type="dbModel.Currency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Currency">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ExchangeR__BaseC__1367E606">
+          <End Role="Currency" Type="dbModel.Currency" Multiplicity="1" />
+          <End Role="ExchangeRate" Type="dbModel.ExchangeRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExchangeRate">
+              <PropertyRef Name="BaseCurrency_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ExchangeR__Curre__1273C1CD">
+          <End Role="Currency" Type="dbModel.Currency" Multiplicity="1" />
+          <End Role="ExchangeRate" Type="dbModel.ExchangeRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExchangeRate">
+              <PropertyRef Name="Currency_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetRates_Result">
+          <Property Type="DateTime" Name="CurrencyDate" Nullable="false" />
+          <Property Type="Double" Name="Rate" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbModelStoreContainer" CdmEntityContainer="dbEntities">
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="dbModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="dbModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortForm" ColumnName="ShortForm" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExchangeRates">
+            <EntityTypeMapping TypeName="dbModel.ExchangeRate">
+              <MappingFragment StoreEntitySet="ExchangeRate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Currency_Id" ColumnName="Currency_Id" />
+                <ScalarProperty Name="BaseCurrency_Id" ColumnName="BaseCurrency_Id" />
+                <ScalarProperty Name="CurrencyDate" ColumnName="CurrencyDate" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetNonExistingDates" FunctionName="dbModel.Store.GetNonExistingDates" />
+          <FunctionImportMapping FunctionImportName="GetRates" FunctionName="dbModel.Store.GetRates">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbModel.GetRates_Result">
+                <ScalarProperty Name="CurrencyDate" ColumnName="CurrencyDate" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
