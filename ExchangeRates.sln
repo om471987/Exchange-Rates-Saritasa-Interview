@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRates.Web", "Exchan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRates.Data", "ExchangeRates.Data\ExchangeRates.Data.csproj", "{E840EFF5-B412-446B-BE20-C4CD836B402C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRates.Tests", "ExchangeRates.Tests\ExchangeRates.Tests.csproj", "{2A742523-E78B-44A7-9893-4386713DEDF0}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ExchangeRates.VB.Web", "ExchangeRates.VB.Web\ExchangeRates.VB.Web.vbproj", "{DDDB6F4C-E831-4115-AAC2-6E2E6C11FFBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,8 +23,19 @@ Global
 		{E840EFF5-B412-446B-BE20-C4CD836B402C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E840EFF5-B412-446B-BE20-C4CD836B402C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E840EFF5-B412-446B-BE20-C4CD836B402C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A742523-E78B-44A7-9893-4386713DEDF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A742523-E78B-44A7-9893-4386713DEDF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A742523-E78B-44A7-9893-4386713DEDF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A742523-E78B-44A7-9893-4386713DEDF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDDB6F4C-E831-4115-AAC2-6E2E6C11FFBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDDB6F4C-E831-4115-AAC2-6E2E6C11FFBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDDB6F4C-E831-4115-AAC2-6E2E6C11FFBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDDB6F4C-E831-4115-AAC2-6E2E6C11FFBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
 	EndGlobalSection
 EndGlobal

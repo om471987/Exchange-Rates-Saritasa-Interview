@@ -6,9 +6,17 @@ namespace ExchangeRates.Web.Controllers
 {
     public class CurrencyController : Controller
     {
+        private readonly IManager _manager;
+
+        public CurrencyController()
+        {
+            var r = ResolveType.GetInstance();
+            _manager = r.Manager();
+        }
+
         public ActionResult Index()
         {
-            var c = DatabaseWrapper.GetCurrencies();
+            var c = _manager.GetCurrencies();
             var model = new CurrencyModel(c);
             return View(model);
         }
@@ -16,9 +24,14 @@ namespace ExchangeRates.Web.Controllers
         [HttpPost]
         public ActionResult Index(DateTime startDate, DateTime endDate, int list1, int list2)
         {
+            var firstDate = new DateTime(1999, 01, 01);
             if (startDate > endDate)
             {
                 ViewBag.Error = "Start Date must be smaller or equal to the end date";
+            }
+            else if (startDate < firstDate || endDate < firstDate)
+            {
+                ViewBag.Error = "Selected date should not be before 1999.";
             }
             else if (startDate > DateTime.Now || endDate > DateTime.Now)
             {
@@ -34,11 +47,10 @@ namespace ExchangeRates.Web.Controllers
             }
             else
             {
-                var manager = new Manager();
-                var model = manager.GetData(startDate, endDate, list1, list2);
+                var model = _manager.GetData(startDate, endDate, list1, list2);
                 return View("ChartResult", model);
             }
-            var c = DatabaseWrapper.GetCurrencies();
+            var c = _manager.GetCurrencies();
             var currencyModel = new CurrencyModel(c);
             return View(currencyModel);
         }
@@ -49,6 +61,3 @@ namespace ExchangeRates.Web.Controllers
         }
     }
 }
-
-
-
