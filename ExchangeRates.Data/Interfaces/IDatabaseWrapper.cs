@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ExchangeRates
+namespace ExchangeRates.DataService
 {
     public interface IDatabaseWrapper
     {

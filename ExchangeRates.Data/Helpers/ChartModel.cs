@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace ExchangeRates
+namespace ExchangeRates.DataService
+
 {
     public class ChartModel
     {

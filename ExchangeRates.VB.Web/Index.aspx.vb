@@ -1,5 +1,4 @@
 ﻿Imports System.ComponentModel
-Imports Microsoft.Practices.Unity
 
 Public Class Index
    Inherits System.Web.UI.Page

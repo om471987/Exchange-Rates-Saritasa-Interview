@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace ExchangeRates
+namespace ExchangeRates.DataService
 {
     public class OpenExchangeRatesService : IOpenExchangeRatesService
     {

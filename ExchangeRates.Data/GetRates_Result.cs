@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExchangeRates
+namespace ExchangeRates.DataService
 {
     using System;
     

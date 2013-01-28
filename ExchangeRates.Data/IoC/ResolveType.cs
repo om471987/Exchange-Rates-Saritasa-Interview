@@ -1,6 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
 
-namespace ExchangeRates
+namespace ExchangeRates.DataService
 {
     public class ResolveType
     {

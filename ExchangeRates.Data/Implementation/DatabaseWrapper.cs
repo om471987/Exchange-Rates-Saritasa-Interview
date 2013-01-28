@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ExchangeRates
+namespace ExchangeRates.DataService
 {
     public class DatabaseWrapper : IDatabaseWrapper
     {

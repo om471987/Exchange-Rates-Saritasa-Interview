@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using ExchangeRates.DataService;
 using ExchangeRates.Web.Models;
 
 namespace ExchangeRates.Web.Controllers
@@ -47,7 +48,7 @@ namespace ExchangeRates.Web.Controllers
             }
             else
             {
-                var model = _manager.GetData(startDate, endDate, list1, list2);
+                var model = _manager.GetRateCollection(startDate, endDate, list1, list2);
                 return View("ChartResult", model);
             }
             var c = _manager.GetCurrencies();

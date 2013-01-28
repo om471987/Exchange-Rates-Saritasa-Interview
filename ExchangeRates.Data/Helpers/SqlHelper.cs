@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace ExchangeRates
+namespace ExchangeRates.DataService
 {
     public static class SqlHelper
     {

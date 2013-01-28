@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ExchangeRates
+namespace ExchangeRates.DataService
 {
     public interface IOpenExchangeRatesService
     {

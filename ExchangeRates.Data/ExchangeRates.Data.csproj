@@ -7,8 +7,8 @@
     <ProjectGuid>{E840EFF5-B412-446B-BE20-C4CD836B402C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExchangeRates</RootNamespace>
-    <AssemblyName>ExchangeRates</AssemblyName>
+    <RootNamespace>ExchangeRates.DataService</RootNamespace>
+    <AssemblyName>ExchangeRates.DataService</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

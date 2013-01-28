@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ExchangeRates
+namespace ExchangeRates.DataService
 {
     public interface IManager
     {
-        ChartModel GetData(DateTime startDate, DateTime endDate, int list1, int list2);
+        ChartModel GetRateCollection(DateTime startDate, DateTime endDate, int list1, int list2);
 
         IDictionary<int, string> GetCurrencies();
     }
