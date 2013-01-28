@@ -1,10 +1,10 @@
 ﻿Public Class Chart
-    Inherits System.Web.UI.Page
+   Inherits Page
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+   Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
 
-    End Sub
-   Protected Sub btnLoad_Click(sender As Object, e As System.EventArgs) Handles BackButton.Click
+   End Sub
+   Protected Sub btnLoad_Click(sender As Object, e As EventArgs) Handles BackButton.Click
       Server.Transfer("Index.aspx")
    End Sub
 End Class
