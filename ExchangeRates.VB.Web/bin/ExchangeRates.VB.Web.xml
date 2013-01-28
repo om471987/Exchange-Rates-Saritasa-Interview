@@ -6,23 +6,7 @@ ExchangeRates.VB.Web
 </name>
 </assembly>
 <members>
-<member name="F:ExchangeRates.VB.Web.Chart.form1">
-	<summary>
-form1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:ExchangeRates.VB.Web.Chart.BackButton">
-	<summary>
-BackButton control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:ExchangeRates.VB.Web.Index.form1">
+<member name="F:ExchangeRates.VB.Web.Index.form1">
 	<summary>
 form1 control.
 </summary>
@@ -103,6 +87,22 @@ To modify move field declaration from designer file to code-behind file.
  Module used to define the properties that are available in the My Namespace for Web projects.
  </summary>
 	<remarks></remarks>
+</member><member name="F:ExchangeRates.VB.Web.Chart.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:ExchangeRates.VB.Web.Chart.BackButton">
+	<summary>
+BackButton control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member>
 </members>
 </doc>

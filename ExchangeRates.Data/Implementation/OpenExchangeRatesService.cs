@@ -10,7 +10,7 @@ namespace ExchangeRates
     public class OpenExchangeRatesService : IOpenExchangeRatesService
     {
         private const string HistoryUrl = "http://openexchangerates.org/api/historical/";
-        private const string Api = "d12f21ee93c541d1afca88163aa2eb3f";
+        private const string Api = "76ff8a4dec2e45bebcf5646b3d517187";
 
         public JsonTemplate GetHistoricalExchangeRate(DateTime? dateObj)
         {
