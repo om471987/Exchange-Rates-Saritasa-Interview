@@ -6,6 +6,12 @@ namespace ExchangeRates.DataService
 {
     public class DatabaseWrapper : IDatabaseWrapper
     {
+        /// <summary>
+        /// This invokes a stored procedure which returns dates from the range which are not present
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="range"></param>
+        /// <returns></returns>
         public IEnumerable<DateTime?> GetNonExistingDates(DateTime date, int range)
         {
             var db = new dbEntities();
@@ -13,6 +19,10 @@ namespace ExchangeRates.DataService
             return nonExistingDates;
         }
 
+        /// <summary>
+        /// It parses json and stores into database
+        /// </summary>
+        /// <param name="input"></param>
         public void SaveJsonTemplate(IDictionary<DateTime?, JsonTemplate> input)
         {
             var imports = new List<ExchangeRate>();
@@ -21,12 +31,20 @@ namespace ExchangeRates.DataService
             {
                 foreach (var t in input)
                 {
-                    imports.AddRange(SDSD((DateTime) t.Key, t.Value));
+                    imports.AddRange(SaveRatesForADay((DateTime) t.Key, t.Value));
                 }
                 imports.BulkInsert(db.Database.Connection.ConnectionString, "ExchangeRate"); 
             }
         }
 
+        /// <summary>
+        /// It gets final data and returns to display as a graph
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <returns></returns>
         public ChartModel GetRate(DateTime startDate, DateTime endDate, int first, int second)
         {
             var db = new dbEntities();
@@ -46,6 +64,10 @@ namespace ExchangeRates.DataService
             return output;
         }
 
+        /// <summary>
+        /// It returns list of valid currencies
+        /// </summary>
+        /// <returns></returns>
         public IDictionary<int,string> GetCurrencies()
         {
             var db = new dbEntities();
@@ -54,7 +76,7 @@ namespace ExchangeRates.DataService
 
         }
 
-        private IEnumerable<ExchangeRate> SDSD(DateTime date, JsonTemplate input)
+        private IEnumerable<ExchangeRate> SaveRatesForADay(DateTime date, JsonTemplate input)
         {
             var output = new List<ExchangeRate>();
             var rub = new ExchangeRate

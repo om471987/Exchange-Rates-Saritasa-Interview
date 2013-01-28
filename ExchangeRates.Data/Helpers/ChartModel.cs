@@ -3,6 +3,9 @@
 namespace ExchangeRates.DataService
 
 {
+    /// <summary>
+    /// It stores dates and rates of x and y axis
+    /// </summary>
     public class ChartModel
     {
         public List<string> Dates { get; set; }
@@ -10,6 +13,9 @@ namespace ExchangeRates.DataService
         public List<double> Rates { get; set; }
     }
 
+    /// <summary>
+    /// It is a templates to grab data from Json
+    /// </summary>
     public class JsonTemplate
     {
         public string Base { get; set; }

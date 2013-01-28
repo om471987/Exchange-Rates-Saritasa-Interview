@@ -12,6 +12,11 @@ namespace ExchangeRates.DataService
         private const string HistoryUrl = "http://openexchangerates.org/api/historical/";
         private const string Api = "76ff8a4dec2e45bebcf5646b3d517187";
 
+        /// <summary>
+        /// It finds and parses json from open exchange rates and converts to C# object
+        /// </summary>
+        /// <param name="dateObj"></param>
+        /// <returns></returns>
         public JsonTemplate GetHistoricalExchangeRate(DateTime? dateObj)
         {
             JsonTemplate output = null;
@@ -37,6 +42,11 @@ namespace ExchangeRates.DataService
             return output;
         }
 
+        /// <summary>
+        /// Builds url
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         private static string BuildUrl(DateTime date)
         {
             var url = new StringBuilder(HistoryUrl);

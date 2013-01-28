@@ -11,12 +11,25 @@ namespace ExchangeRates.DataService
         private readonly IDatabaseWrapper _databaseWrapper;
         private readonly IOpenExchangeRatesService _openExchangeRatesService;
 
+        /// <summary>
+        /// This constructor is invoked by Unity IoC
+        /// </summary>
+        /// <param name="databaseWrapper"></param>
+        /// <param name="openExchangeRatesService"></param>
         public Manager(IDatabaseWrapper databaseWrapper, IOpenExchangeRatesService openExchangeRatesService)
         {
             _databaseWrapper = databaseWrapper;
             _openExchangeRatesService = openExchangeRatesService;
         }
 
+        /// <summary>
+        /// It return data to plot graph
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <param name="currency1"></param>
+        /// <param name="currrency2"></param>
+        /// <returns></returns>
         public ChartModel GetRateCollection(DateTime startDate, DateTime endDate, int currency1, int currrency2)
         {
             var range = (endDate - startDate).Days + 1;
@@ -35,6 +48,10 @@ namespace ExchangeRates.DataService
             return _databaseWrapper.GetRate(startDate, endDate, currency1, currrency2);
         }
 
+        /// <summary>
+        /// Returns currencies
+        /// </summary>
+        /// <returns></returns>
         public IDictionary<int,string> GetCurrencies()
         {
             return _databaseWrapper.GetCurrencies();

@@ -9,6 +9,13 @@ namespace ExchangeRates.DataService
 {
     public static class SqlHelper
     {
+        /// <summary>
+        /// It inserts batch of data in a one hit to the database
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="connection"></param>
+        /// <param name="tableName"></param>
         public static void BulkInsert<T>(this IList<T> list, string connection, string tableName)
         {
             using (var bulkCopy = new SqlBulkCopy(connection))

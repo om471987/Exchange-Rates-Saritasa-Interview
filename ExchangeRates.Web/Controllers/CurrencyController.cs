@@ -15,13 +15,24 @@ namespace ExchangeRates.Web.Controllers
             _manager = r.Manager();
         }
 
+        /// <summary>
+        /// First user comes here
+        /// </summary>
         public ActionResult Index()
         {
             var c = _manager.GetCurrencies();
             var model = new CurrencyModel(c);
             return View(model);
         }
-
+        
+        /// <summary>
+        /// Data is passed to display chart
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <param name="list1"></param>
+        /// <param name="list2"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Index(DateTime startDate, DateTime endDate, int list1, int list2)
         {
@@ -56,6 +67,10 @@ namespace ExchangeRates.Web.Controllers
             return View(currencyModel);
         }
 
+        /// <summary>
+        /// Chart is displayed
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ChartResult()
         {
             return View();
