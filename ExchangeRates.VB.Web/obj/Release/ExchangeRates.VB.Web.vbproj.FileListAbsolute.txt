@@ -18,3 +18,5 @@ C:\Users\omkar\Documents\GitHub\ExchangeRates\ExchangeRates.VB.Web\obj\Release\E
 C:\Users\omkar\Documents\GitHub\ExchangeRates\ExchangeRates.VB.Web\obj\Release\ExchangeRates.VB.Web.dll
 C:\Users\omkar\Documents\GitHub\ExchangeRates\ExchangeRates.VB.Web\obj\Release\ExchangeRates.VB.Web.xml
 C:\Users\omkar\Documents\GitHub\ExchangeRates\ExchangeRates.VB.Web\obj\Release\ExchangeRates.VB.Web.pdb
+C:\Users\omkar\Documents\GitHub\ExchangeRates\ExchangeRates.VB.Web\bin\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\omkar\Documents\GitHub\ExchangeRates\ExchangeRates.VB.Web\bin\Microsoft.Practices.Unity.Configuration.xml

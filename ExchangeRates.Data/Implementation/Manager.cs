@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ExchangeRates.DataService.IoC;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Practices.Unity;
 
 namespace ExchangeRates.DataService
 {
@@ -11,15 +13,15 @@ namespace ExchangeRates.DataService
         private readonly IDatabaseWrapper _databaseWrapper;
         private readonly IExchangeRatesService _openExchangeRatesService;
 
-        /// <summary>
-        /// This constructor is invoked by Unity IoC
-        /// </summary>
-        /// <param name="databaseWrapper"></param>
-        /// <param name="openExchangeRatesService"></param>
+        public Manager() : this(null,null)
+        {
+
+        }
+
         public Manager(IDatabaseWrapper databaseWrapper, IExchangeRatesService openExchangeRatesService)
         {
-            _databaseWrapper = databaseWrapper;
-            _openExchangeRatesService = openExchangeRatesService;
+            _databaseWrapper = databaseWrapper ?? ModelContainer.Instance.Resolve<IDatabaseWrapper>();
+            _openExchangeRatesService = openExchangeRatesService ?? ModelContainer.Instance.Resolve<IExchangeRatesService>();
         }
 
         /// <summary>

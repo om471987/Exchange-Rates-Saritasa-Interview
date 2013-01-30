@@ -83,6 +83,7 @@
     <Compile Include="IoC\ResolveType.cs" />
     <Compile Include="Implementation\Manager.cs" />
     <Compile Include="Interfaces\IExchangeRatesService.cs" />
+    <Compile Include="IoC\ModelContainer.cs" />
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

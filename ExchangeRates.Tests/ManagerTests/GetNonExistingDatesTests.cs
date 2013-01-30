@@ -1,14 +1,24 @@
 ﻿using System;
 using ExchangeRates.DataService;
 using NUnit.Framework;
+using ExchangeRates.DataService.IoC;
+using Microsoft.Practices.Unity;
 
 namespace ExchangeRates.Tests
 {
     [TestFixture]
     public class GetNonExistingDatesTests
     {
-        private ResolveType _resolveType;
         private IManager _manager;
+
+        public GetNonExistingDatesTests() : this(null)
+        {
+        }
+
+                public GetNonExistingDatesTests(IManager manager)
+        {
+            _manager = manager ?? ModelContainer.Instance.Resolve<IManager>();
+        }
 
         private DateTime _startDateTime;
         private DateTime _endDateTime;
@@ -18,8 +28,6 @@ namespace ExchangeRates.Tests
         [SetUp]
         public void Setup()
         {
-            _resolveType = ResolveType.GetInstance();
-            _manager = _resolveType.Manager();
             _startDateTime = DateTime.Now.AddDays(-4);
             _endDateTime = DateTime.Now;
             _rub = 1;

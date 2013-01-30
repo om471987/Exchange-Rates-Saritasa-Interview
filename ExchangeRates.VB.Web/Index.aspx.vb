@@ -1,9 +1,21 @@
 ﻿Imports ExchangeRates.DataService
+Imports Microsoft.Practices.Unity
+Imports ExchangeRates.DataService.IoC
 
 Public Class Index
     Inherits Page
-
+    Public _manager As IManager
     Public chartModel As ChartModel
+
+    Public Sub New()
+        Me.New(Nothing)
+
+    End Sub
+
+    Public Sub New(ByVal manager As IManager)
+        Dim instance = ModelContainer.Instance.Resolve(Of IManager)()
+        _manager = If(manager, instance)
+    End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
 
@@ -23,7 +35,7 @@ Public Class Index
         ElseIf sd <= en.AddDays(-60) Then
             ErrorLabel.Text = "Please select dates in the range of 60 days."
         Else
-            chartModel = ResolveType.GetInstance().Manager().GetRateCollection(StartDate.Text, EndDate.Text,
+            chartModel = _manager.GetRateCollection(StartDate.Text, EndDate.Text,
                                                                                 list1.SelectedValue, list2.SelectedValue)
             Session("ChartM") = chartModel
             Server.Transfer("Chart.aspx")

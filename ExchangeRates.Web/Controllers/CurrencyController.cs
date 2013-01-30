@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using ExchangeRates.DataService;
 using ExchangeRates.Web.Models;
+using ExchangeRates.DataService.IoC;
+using Microsoft.Practices.Unity;
 
 namespace ExchangeRates.Web.Controllers
 {
@@ -9,12 +11,14 @@ namespace ExchangeRates.Web.Controllers
     {
         private readonly IManager _manager;
 
-        public CurrencyController()
+        public CurrencyController() : this(null)
         {
-            var r = ResolveType.GetInstance();
-            _manager = r.Manager();
         }
 
+        public CurrencyController(IManager manager)
+        {
+            _manager = manager ?? ModelContainer.Instance.Resolve<IManager>();
+        }
         /// <summary>
         /// First user comes here
         /// </summary>
