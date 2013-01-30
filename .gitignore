@@ -8,14 +8,14 @@
 *.suo
 *.user
 
-/ExchangeRates.Data/bin/
-/ExchangeRates.Data/obj/
+./ExchangeRates.Data/bin/
+./ExchangeRates.Data/obj/
 
-/ExchangeRates.Web/bin/
-/ExchangeRates.Web/obj/
+./ExchangeRates.Web/bin/
+./ExchangeRates.Web/obj/
 
-/ExchangeRates.VB.Web/bin/
-/ExchangeRates.VB.Web/obj/
+./ExchangeRates.VB.Web/bin/
+./ExchangeRates.VB.Web/obj/
 
-/ExchangeRates.Tests/bin/
-/ExchangeRates.Tests/obj/
+./ExchangeRates.Tests/bin/
+./ExchangeRates.Tests/obj/
