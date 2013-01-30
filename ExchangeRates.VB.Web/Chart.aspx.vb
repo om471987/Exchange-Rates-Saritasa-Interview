@@ -7,6 +7,9 @@ Public Class Chart
     Public chartModel As ChartModel
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+        If Session("ChartM") Is Nothing Then
+            Server.Transfer("Index.aspx")
+        End If
         chartModel = Session("ChartM")
 
     End Sub
