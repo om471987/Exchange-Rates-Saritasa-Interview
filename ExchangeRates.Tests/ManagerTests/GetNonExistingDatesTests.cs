@@ -15,7 +15,7 @@ namespace ExchangeRates.Tests
         {
         }
 
-                public GetNonExistingDatesTests(IManager manager)
+        public GetNonExistingDatesTests(IManager manager)
         {
             _manager = manager ?? ModelContainer.Instance.Resolve<IManager>();
         }
