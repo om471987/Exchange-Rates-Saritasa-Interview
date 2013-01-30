@@ -1,10 +1,10 @@
 ﻿using ExchangeRates.DataService.IoC;
-using ExchangeRates.Web.Helper;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Unity.Mvc3;
 
 namespace ExchangeRates.Web
 {
@@ -19,7 +19,9 @@ namespace ExchangeRates.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            DependencyResolver.SetResolver(new UnityDependencyResolver(ModelContainer.Instance));
+            var container = ModelContainer.Instance;
+                
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }
 }

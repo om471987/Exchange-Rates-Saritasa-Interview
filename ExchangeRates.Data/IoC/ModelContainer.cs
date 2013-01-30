@@ -12,28 +12,20 @@ namespace ExchangeRates.DataService.IoC
         private static readonly object _key = new object();
         private static UnityContainer _Instance;
 
+        static ModelContainer()
+        {
+            _Instance = new UnityContainer();
+        }
+
         public static UnityContainer Instance
         {
             get
             {
-                if (_Instance == null)
-                {
-                    lock (_key)
-                    {
-                        if (_Instance == null)
-                        {
-                            _Instance = new UnityContainer();
-                            _Instance = new UnityContainer();
-                            _Instance.RegisterType<IDatabaseWrapper, DatabaseWrapper>();
-                            _Instance.RegisterType<IExchangeRatesService, OpenExchangeRatesService>();
-                            _Instance.RegisterType<IManager, Manager>();
-                        }
-                    }
-                }
+                _Instance.RegisterType<IDatabaseWrapper, DatabaseWrapper>(new HierarchicalLifetimeManager());
+                _Instance.RegisterType<IExchangeRatesService, OpenExchangeRatesService>(new HierarchicalLifetimeManager());
+                _Instance.RegisterType<IManager, Manager>(new HierarchicalLifetimeManager());
                 return _Instance;
             }
-
         }
-
     }
 }
