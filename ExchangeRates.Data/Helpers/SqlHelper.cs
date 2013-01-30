@@ -18,6 +18,10 @@ namespace ExchangeRates.DataService
         /// <param name="tableName"></param>
         public static void BulkInsert<T>(this IList<T> list, string connection, string tableName)
         {
+            if (list == null)
+            {
+                return;
+            }
             using (var bulkCopy = new SqlBulkCopy(connection))
             {
                 bulkCopy.BatchSize = list.Count;

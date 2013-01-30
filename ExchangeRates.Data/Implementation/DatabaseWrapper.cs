@@ -31,7 +31,11 @@ namespace ExchangeRates.DataService
             {
                 foreach (var t in input)
                 {
-                    imports.AddRange(SaveRatesForADay((DateTime) t.Key, t.Value));
+                    var rateCollection = SaveRatesForADay((DateTime) t.Key, t.Value);
+                    if (rateCollection != null)
+                    {
+                        imports.AddRange(rateCollection);
+                    }
                 }
                 imports.BulkInsert(db.Database.Connection.ConnectionString, "ExchangeRate"); 
             }
@@ -78,6 +82,10 @@ namespace ExchangeRates.DataService
 
         private IEnumerable<ExchangeRate> SaveRatesForADay(DateTime date, JsonTemplate input)
         {
+            if (input == null)
+            {
+                return null;
+            }
             var output = new List<ExchangeRate>();
             var rub = new ExchangeRate
             {
