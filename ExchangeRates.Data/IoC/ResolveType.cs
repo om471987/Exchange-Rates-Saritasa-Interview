@@ -17,7 +17,7 @@ namespace ExchangeRates.DataService
         {
             _container = new UnityContainer();
             _container.RegisterType<IDatabaseWrapper, DatabaseWrapper>();
-            _container.RegisterType<IOpenExchangeRatesService, OpenExchangeRatesService>();
+            _container.RegisterType<IExchangeRatesService, OpenExchangeRatesService>();
             _container.RegisterType<IManager, Manager>();
         }
 

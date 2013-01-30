@@ -9,14 +9,14 @@ namespace ExchangeRates.DataService
     public class Manager : IManager
     {
         private readonly IDatabaseWrapper _databaseWrapper;
-        private readonly IOpenExchangeRatesService _openExchangeRatesService;
+        private readonly IExchangeRatesService _openExchangeRatesService;
 
         /// <summary>
         /// This constructor is invoked by Unity IoC
         /// </summary>
         /// <param name="databaseWrapper"></param>
         /// <param name="openExchangeRatesService"></param>
-        public Manager(IDatabaseWrapper databaseWrapper, IOpenExchangeRatesService openExchangeRatesService)
+        public Manager(IDatabaseWrapper databaseWrapper, IExchangeRatesService openExchangeRatesService)
         {
             _databaseWrapper = databaseWrapper;
             _openExchangeRatesService = openExchangeRatesService;

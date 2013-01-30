@@ -4,14 +4,15 @@ using System.IO;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json;
+using System.Configuration;
+using System.Globalization;
 
 namespace ExchangeRates.DataService
 {
-    public class OpenExchangeRatesService : IOpenExchangeRatesService
+    public class OpenExchangeRatesService : IExchangeRatesService
     {
         private const string HistoryUrl = "http://openexchangerates.org/api/historical/";
-        private const string Api = "76ff8a4dec2e45bebcf5646b3d517187";
-
+        private static readonly string _api = ConfigurationManager.AppSettings["OpenExchangeRateId"].ToString();
         /// <summary>
         /// It finds and parses json from open exchange rates and converts to C# object
         /// </summary>
@@ -50,15 +51,9 @@ namespace ExchangeRates.DataService
         private static string BuildUrl(DateTime date)
         {
             var url = new StringBuilder(HistoryUrl);
-            url.Append(date.Year);
-            url.Append("-");
-            url.Append(date.Month < 10 ? "0" : "");
-            url.Append(date.Month);
-            url.Append("-");
-            url.Append(date.Day < 10 ? "0" : "");
-            url.Append(date.Day);
+            url.Append(date.ToString("yyyy-MM-dd"));
             url.Append(".json?app_id=");
-            url.Append(Api);
+            url.Append(_api);
             return url.ToString();
         }
     }

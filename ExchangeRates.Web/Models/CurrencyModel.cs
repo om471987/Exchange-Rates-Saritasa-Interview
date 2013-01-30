@@ -8,11 +8,6 @@ namespace ExchangeRates.Web.Models
 {
     public class CurrencyModel
     {
-        private DateTime asdsd;
-        public CurrencyModel()
-        {
-            asdsd = DateTime.Now;
-        }
         public CurrencyModel(IEnumerable<KeyValuePair<int, string>> currencies)
         {
             Currencies = (from t in currencies select new SelectListItem { Text = t.Value,Value = t.Key.ToString(CultureInfo.InvariantCulture)}).AsEnumerable();
