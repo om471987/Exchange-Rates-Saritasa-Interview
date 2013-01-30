@@ -11,13 +11,9 @@ namespace ExchangeRates.Web.Controllers
     {
         private readonly IManager _manager;
 
-        public CurrencyController() : this(null)
-        {
-        }
-
         public CurrencyController(IManager manager)
         {
-            _manager = manager ?? ModelContainer.Instance.Resolve<IManager>();
+            _manager = manager;
         }
         /// <summary>
         /// First user comes here

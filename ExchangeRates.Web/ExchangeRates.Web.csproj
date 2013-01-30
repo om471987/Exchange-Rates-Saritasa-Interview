@@ -139,6 +139,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\IUnityDependencyResolver.cs" />
     <Compile Include="Models\ChartModel.cs" />
     <Compile Include="Models\CurrencyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
