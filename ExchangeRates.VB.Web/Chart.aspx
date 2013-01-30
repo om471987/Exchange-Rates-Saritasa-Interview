@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Chart.aspx.vb" Inherits="ExchangeRates.VB.Web.Chart" %>
 
+<%@ Import Namespace="Newtonsoft.Json" %>
+
 <!DOCTYPE html>
 <html>
 <body>
@@ -23,14 +25,19 @@
               text: "Exchange Rates"
            },
            xAxis: {
-              categories: ['2013-01-03', '2013-01-04', '2013-01-05']
+               //categories: ['2013-01-03', '2013-01-04', '2013-01-05']
+               categories: <%= JsonConvert.SerializeObject(chartModel.Dates)%>
            },
            yAxis: {
               title: {
                  text: 'Rate'
               }
            },
-           series: [{ name: "Date", data: [3.124,5,234] }]
+           series: [{
+               name: "Date",
+               //data: [3.124, 5, 234]
+               data: <%= JsonConvert.SerializeObject(chartModel.Rates)%>
+           }]
         }
         );
    });
